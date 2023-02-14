@@ -106,21 +106,21 @@ def read_fields(args):
 
 
     elif args['data_type'] == 'Flash':
-    rhoField = "dens"
-    velFields = ["velx","vely","velz"]
-    if args['b']:
-        magFields = ["magx","magy","magz"]
-    if args['forced']:
-        accFields = ['accx','accy','accz']
-    if args['eos'] == 'adiabatic':
-        pressField = ('gas', 'pressure')
+        rhoField = "dens"
+        velFields = ["velx","vely","velz"]
+        if args['b']:
+            magFields = ["magx","magy","magz"]
+        if args['forced']:
+            accFields = ['accx','accy','accz']
+        if args['eos'] == 'adiabatic':
+            pressField = ('gas', 'pressure')
 
-    readAllFieldsWithYT(fields, args['data_path'], args['res'],
-                        rhoField, velFields, magFields,
-                        accFields, pressField)
+        readAllFieldsWithYT(fields, args['data_path'], args['res'],
+                            rhoField, velFields, magFields,
+                            accFields, pressField)
 
     else:
-        raise SystemExit('Unknown data type: ', data_type)
+        raise SystemExit('Unknown data type: ', `data_type`)
 
     time_elapsed = MPI.Wtime() - time_start
     time_elapsed = comm.gather(time_elapsed)
